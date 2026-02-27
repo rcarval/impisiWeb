@@ -1,0 +1,109 @@
+<p></p>
+<div class="container">
+    <!-- Slider de Empresas -->
+    <div class="empresa-slider">
+        <div class="empresa-slider-wrapper">
+            <img loading="lazy" src="/images/adlin.jpeg" alt="adlin">
+            <img loading="lazy" src="/images/intralox.jpeg" alt="intralox">
+            <img loading="lazy" src="/images/rollway.jpeg" alt="rollway">
+            <img loading="lazy" src="/images/timken.jpeg" alt="timken">
+            <img loading="lazy" src="/images/koyo.jpeg" alt="koyo">
+            <img loading="lazy" src="/images/art_bearings.jpeg" alt="art_bearings">
+            <img loading="lazy" src="/images/logo_semil.jpeg" alt="semil">
+            <!-- Duplicamos las imágenes para el efecto infinito -->
+            <img loading="lazy" src="/images/adlin.jpeg" alt="adlin">
+            <img loading="lazy" src="/images/intralox.jpeg" alt="intralox">
+            <img loading="lazy" src="/images/rollway.jpeg" alt="rollway">
+            <img loading="lazy" src="/images/timken.jpeg" alt="timken">
+            <img loading="lazy" src="/images/koyo.jpeg" alt="koyo">
+            <img loading="lazy" src="/images/art_bearings.jpeg" alt="art_bearings">
+            <img loading="lazy" src="/images/logo_semil.jpeg" alt="semil">
+        </div>
+    </div>
+
+    <!-- Script JavaScript -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let sliderWrapper = document.querySelector(".empresa-slider-wrapper");
+            let images = sliderWrapper.innerHTML; // Guarda las imágenes
+            sliderWrapper.innerHTML += images; // Duplica las imágenes para que el loop sea continuo
+        });
+    </script>
+   <br/>
+   <br/>
+    <div class="row">
+        <section class="col-md-4 col-12">
+            <h3>Sucursal</h3>
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d1735.5714833768807!2d-70.76455750762035!3d-33.62975684007135!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sAv.%20Calera%20de%20Tango%2C%20paradero%207!5e0!3m2!1ses!2scl!4v1760450169193!5m2!1ses!2scl"
+                width="100%" height="350" style="border:0;" allowfullscreen
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </section>
+        <section class="col-md-2 col-12">
+            <h3>Teléfonos</h3>
+            <ul class="links">
+                <li><a href="tel:+56927425817">+56 92 742 5817</a></li>
+                <li><a href="tel:+56923860131">+56 92 386 0131</a></li>
+                <li><a href="tel:+56952199109">+56 95 219 9109</a></li>
+                <li><a href="tel:+56994334435">+56 99 433 4435</a></li>
+                <li><a href="tel:+56923892900">+56 92 389 2900</a></li>
+            </ul>
+        </section>
+        <section class="col-md-6 col-12">
+            <h3>Contáctanos</h3>
+            <form action="https://formsubmit.co/ajax/Ventas@IMPISI.CL"
+                method="POST"
+                onsubmit="return enviarFormulario(event)">
+                <div class="row gtr-50">
+                    <div class="col-6 col-12-mobilep">
+                        <input type="text" name="name" id="name"
+                            placeholder="Nombre Apellido" required="true" />
+                    </div>
+                    <div class="col-6 col-12-mobilep">
+                        <input type="email" name="email" id="email"
+                            placeholder="Email" required="true" />
+                    </div>
+                    <div class="col-6 col-12-mobilep">
+                        <input type="phone" name="phone" id="phone"
+                            pattern="(\+?[0-9]{9,15})$" placeholder="Teléfono"
+                            required="true" />
+                    </div>
+                    <div class="col-12">
+                        <textarea name="message" id="message"
+                            placeholder="Indique los productos que desea cotizar"
+                            required="true" rows="5"></textarea>
+                    </div>
+                    <div class="col-12">
+                        <input type="hidden" name="_subject"
+                            value="Cotizaci&oacute;n">
+                        <input type="hidden" name="_captcha" value="false">
+                        <ul class="actions">
+                            <li><input type="submit" class="button alt"
+                                    value="Enviar" /></li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </div>
+</div>
+
+<!-- Icons -->
+<ul class="icons">
+    <li><a href="https://www.instagram.com/impisichile/"
+            class="icon brands fa-instagram"><span
+                class="label">Instagram</span></a></li>
+    <li><a
+            href="https://www.linkedin.com/company/importaciones-y-soluciones-integrales-spa/"
+            class="icon brands fa-linkedin-in"><span
+                class="label">LinkedIn</span></a></li>
+</ul>
+
+<!-- Copyright -->
+<div class="copyright">
+    <ul class="menu">
+        <li>&copy; Derechos reservados</li>
+        <li><a href="https://www.impisi.cl/">Impisi</a></li>
+    </ul>
+</div>
