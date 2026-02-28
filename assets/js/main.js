@@ -26,34 +26,29 @@
 		}, 100);
 	});
 
-	// Dropdowns.
-	$('#nav > ul').dropotron({
-		offsetY: -15,
-		hoverDelay: 0,
-		alignment: 'center'
-	});
-
-	// Nav.
-
-	// Bar.
-	$(
-		'<div id="titleBar">' +
-		'<a href="#navPanel" class="toggle"></a>' +
-		'<span class="title">IMPISI SPA </span>' +
-		'</div>'
-	)
-		.appendTo($body);
-
-	// Panel.
-	$(
-		'<div id="navPanel">' +
-		'<nav>' +
-		$('#nav').navList() +
-		'</nav>' +
-		'</div>'
-	)
-		.appendTo($body)
-		.panel({
+	// Inicialización del menú (también cuando se carga por AJAX en index)
+	function initNav() {
+		var $nav = $('#nav');
+		if (!$nav.length) return;
+		$nav.find('> ul').dropotron({
+			offsetY: -15,
+			hoverDelay: 0,
+			alignment: 'left'
+		});
+		if ($('#titleBar').length) return; // Ya creado
+		$(
+			'<div id="titleBar">' +
+			'<a href="#navPanel" class="toggle"></a>' +
+			'<span class="title">IMPISI SPA </span>' +
+			'</div>'
+		).appendTo($body);
+		$(
+			'<div id="navPanel">' +
+			'<nav>' +
+			$nav.navList() +
+			'</nav>' +
+			'</div>'
+		).appendTo($body).panel({
 			delay: 500,
 			hideOnClick: true,
 			hideOnSwipe: true,
@@ -63,6 +58,10 @@
 			target: $body,
 			visibleClass: 'navPanel-visible'
 		});
+	}
+
+	$(function () { initNav(); });
+	$(document).on('nav-ready', function () { initNav(); });
 
 })(jQuery);
 

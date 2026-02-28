@@ -1,0 +1,360 @@
+<!DOCTYPE HTML>
+<html lang="es-CL">
+
+<head>
+	<title>IMPISI SPA - Catálogo Rodamientos</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<link rel="icon" href="images/logo_impisi.jpeg" type="image/jpeg">
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		(function () {
+			var options = {
+				whatsapp: "+56927425817",
+				call_to_action: "¡Hola! ¿En qué puedo ayudarte?",
+				position: "right",
+				size: "large",
+			};
+			var proto = document.location.protocol, host = "getbutton.io", url = proto + "//static." + host;
+			var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = url + '/widget-send-button/js/init.js';
+			s.onload = function () { WhWidgetSendButton.init(host, proto, options); };
+			var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
+		})();
+	</script>
+</head>
+
+<body class="is-preload">
+	<div id="page-wrapper">
+
+		<div id="header">
+			<script>
+				$(function () {
+					$("#header").load("components/navigation.html", function () { $(document).trigger('nav-ready'); });
+				});
+			</script>
+		</div>
+
+		<section id="banner2">
+			<img loading="lazy" class="d-block w-100 h-auto" src="images/banner-impisi.png" alt="Catálogo Rodamientos">
+			<header>
+				<h2>Catálogo Rodamientos</h2>
+				<p>Busque por código o dimensiones</p>
+			</header>
+		</section>
+
+		<section class="wrapper style1 catalogo-rodamientos-section">
+			<div class="container catalogo-rodamientos-container">
+
+				<div class="catalogo-search-card">
+					<h3>Búsqueda</h3>
+					<p class="catalogo-search-desc">Elija el tipo de búsqueda y complete los datos. Dimensiones en mm enteros (ej: 25, 52, 15).</p>
+					<div class="catalogo-search-mode" role="group" aria-label="Tipo de búsqueda">
+						<button type="button" class="catalogo-mode-btn is-active" data-mode="codigo" aria-pressed="true">Por código</button>
+						<button type="button" class="catalogo-mode-btn" data-mode="dimensiones" aria-pressed="false">Por dimensiones</button>
+					</div>
+					<form id="formCatalogo" class="catalogo-search-form">
+						<div class="catalogo-search-row catalogo-mode-block" id="blockCodigo">
+							<div class="catalogo-search-group catalogo-codigo-wrap">
+								<label for="codigo">Código</label>
+								<input type="text" id="codigo" name="codigo" placeholder="Ej: 6205" maxlength="20" autocomplete="off" />
+								<div id="codigoAutocomplete" class="catalogo-autocomplete" role="listbox" aria-label="Sugerencias de código" hidden></div>
+							</div>
+						</div>
+						<div class="catalogo-search-row catalogo-mode-block" id="blockDimensiones" hidden>
+							<div class="catalogo-search-group">
+								<label for="dInterior">Diámetro interior (mm)</label>
+								<input type="number" id="dInterior" name="dInterior" placeholder="mm" min="0" max="9999" step="1" />
+							</div>
+							<div class="catalogo-search-group">
+								<label for="dExterior">Diámetro exterior (mm)</label>
+								<input type="number" id="dExterior" name="dExterior" placeholder="mm" min="0" max="9999" step="1" />
+							</div>
+							<div class="catalogo-search-group">
+								<label for="espesor">Espesor (mm)</label>
+								<input type="number" id="espesor" name="espesor" placeholder="mm" min="0" max="9999" step="1" />
+							</div>
+						</div>
+						<div class="catalogo-search-actions">
+							<button type="submit" class="button">Buscar</button>
+							<button type="reset" class="button alt">Limpiar</button>
+						</div>
+					</form>
+				</div>
+
+				<div id="catalogoResults" class="catalogo-results" aria-live="polite">
+					<div class="catalogo-results-placeholder" id="catalogoPlaceholder">
+						<p>Elija el tipo de búsqueda, complete los datos y pulse <strong>Buscar</strong>.</p>
+					</div>
+					<div class="catalogo-results-table-wrap" id="catalogoTableWrap" hidden>
+						<h3>Resultados</h3>
+						<div class="catalogo-table-scroll">
+							<table class="catalogo-table" id="catalogoTable">
+								<thead>
+									<tr>
+										<th>Código</th>
+										<th>Diámetro interior (mm)</th>
+										<th>Diámetro exterior (mm)</th>
+										<th>Espesor (mm)</th>
+										<th>Descripción</th>
+									</tr>
+								</thead>
+								<tbody id="catalogoTableBody">
+								</tbody>
+							</table>
+						</div>
+						<nav class="catalogo-paginador" id="catalogoPaginador" aria-label="Paginación de resultados"></nav>
+					</div>
+				</div>
+
+			</div>
+		</section>
+
+		<div id="footer">
+			<script>
+				$(function () {
+					$("#footer").load("components/footer.html");
+				});
+			</script>
+		</div>
+
+	</div>
+
+	<script src="assets/js/jquery.dropotron.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/navigation.js"></script>
+	<script src="assets/js/main.js"></script>
+	<script>
+		var searchMode = 'codigo'; // 'codigo' | 'dimensiones'
+
+		$('.catalogo-mode-btn').on('click', function () {
+			var mode = $(this).data('mode');
+			searchMode = mode;
+			$('.catalogo-mode-btn').removeClass('is-active').attr('aria-pressed', 'false');
+			$(this).addClass('is-active').attr('aria-pressed', 'true');
+			if (mode === 'codigo') {
+				$('#blockCodigo').removeAttr('hidden');
+				$('#blockDimensiones').attr('hidden', true);
+			} else {
+				$('#blockCodigo').attr('hidden', true);
+				$('#blockDimensiones').removeAttr('hidden');
+			}
+		});
+
+		$('#formCatalogo').on('submit', function (e) {
+			e.preventDefault();
+			var codigo = $.trim($('#codigo').val());
+			var dInt = $('#dInterior').val();
+			var dExt = $('#dExterior').val();
+			var esp = $('#espesor').val();
+
+			var $placeholder = $('#catalogoPlaceholder');
+			var $wrap = $('#catalogoTableWrap');
+			var $tbody = $('#catalogoTableBody');
+
+			if (searchMode === 'codigo') {
+				if (codigo.length < 2) {
+					$placeholder.removeClass('is-hidden').find('p').html('Ingrese al menos <strong>2 caracteres</strong> en el código y pulse <strong>Buscar</strong>.');
+					$wrap.attr('hidden', true).removeClass('is-visible');
+					$tbody.empty();
+					return;
+				}
+			} else {
+				var hasDimensions = (dInt !== '' && dInt !== null) || (dExt !== '' && dExt !== null) || (esp !== '' && esp !== null);
+				if (!hasDimensions) {
+					$placeholder.removeClass('is-hidden').find('p').html('Ingrese al menos una <strong>dimensión</strong> (mm) y pulse <strong>Buscar</strong>.');
+					$wrap.attr('hidden', true).removeClass('is-visible');
+					$tbody.empty();
+					return;
+				}
+			}
+
+			var PAGE_SIZE = 30;
+			var catalogFullResults = [];
+			var catalogCurrentPage = 1;
+
+			function renderResults(results) {
+				catalogFullResults = Array.isArray(results) ? results : [];
+				catalogCurrentPage = 1;
+				$placeholder.addClass('is-hidden');
+				$wrap.removeAttr('hidden').addClass('is-visible');
+				renderResultsPage();
+			}
+
+			function renderResultsPage() {
+				var total = catalogFullResults.length;
+				var totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
+				var page = Math.min(Math.max(1, catalogCurrentPage), totalPages);
+				catalogCurrentPage = page;
+				var start = (page - 1) * PAGE_SIZE;
+				var slice = catalogFullResults.slice(start, start + PAGE_SIZE);
+				$tbody.empty();
+				slice.forEach(function (row) {
+					var desc = row.descripcion != null ? row.descripcion : '';
+					$tbody.append(
+						'<tr><td>' + (row.codigo || '') + '</td><td>' + (row.dInterior != null ? row.dInterior : '') + '</td><td>' + (row.dExterior != null ? row.dExterior : '') + '</td><td>' + (row.espesor != null ? row.espesor : '') + '</td><td>' + desc + '</td></tr>'
+					);
+				});
+				var $nav = $('#catalogoPaginador');
+				$nav.empty();
+				if (totalPages <= 1 && total <= PAGE_SIZE) {
+					$nav.append('<span class="catalogo-paginador-info">' + total + ' registro(s)</span>');
+					return;
+				}
+				var prevDisabled = page <= 1 ? ' disabled' : '';
+				var nextDisabled = page >= totalPages ? ' disabled' : '';
+				$nav.append('<button type="button" class="catalogo-paginador-btn"' + prevDisabled + ' data-page="prev">« Anterior</button>');
+				$nav.append('<span class="catalogo-paginador-info">Página ' + page + ' de ' + totalPages + ' (' + total + ' registros)</span>');
+				$nav.append('<button type="button" class="catalogo-paginador-btn"' + nextDisabled + ' data-page="next">Siguiente »</button>');
+			}
+
+			$(document).on('click', '#catalogoPaginador .catalogo-paginador-btn', function () {
+				if ($(this).prop('disabled')) return;
+				var action = $(this).data('page');
+				if (action === 'prev') catalogCurrentPage--;
+				if (action === 'next') catalogCurrentPage++;
+				renderResultsPage();
+			});
+
+			var apiUrl = 'php/catalogo.php';
+			var params = { mode: searchMode };
+			if (searchMode === 'codigo') {
+				params.codigo = codigo;
+			} else {
+				if (dInt !== '') params.dInterior = dInt;
+				if (dExt !== '') params.dExterior = dExt;
+				if (esp !== '') params.espesor = esp;
+			}
+			$.ajax({
+				url: apiUrl,
+				type: 'GET',
+				data: params,
+				dataType: 'json'
+			}).done(function (data) {
+				renderResults(Array.isArray(data) ? data : []);
+			}).fail(function () {
+				$placeholder.removeClass('is-hidden').find('p').html('No se pudo conectar con el catálogo. <strong>Intente de nuevo</strong>.');
+				$wrap.attr('hidden', true).removeClass('is-visible');
+				$tbody.empty();
+			});
+		});
+
+		$('#formCatalogo').on('reset', function () {
+			setTimeout(function () {
+				searchMode = 'codigo';
+				$('.catalogo-mode-btn').removeClass('is-active').attr('aria-pressed', 'false');
+				$('.catalogo-mode-btn[data-mode="codigo"]').addClass('is-active').attr('aria-pressed', 'true');
+				$('#blockCodigo').removeAttr('hidden');
+				$('#blockDimensiones').attr('hidden', true);
+				$('#catalogoPlaceholder').removeClass('is-hidden').find('p').html('Elija el tipo de búsqueda, complete los datos y pulse <strong>Buscar</strong>.');
+				$('#catalogoTableWrap').attr('hidden', true).removeClass('is-visible');
+				$('#catalogoTableBody').empty();
+				$('#catalogoPaginador').empty();
+				catalogFullResults = [];
+				hideAutocomplete();
+			}, 0);
+		});
+
+		// Autocompletado de código (API, mínimo 2 caracteres)
+		var MAX_SUGGESTIONS = 10;
+		var autocompleteHideTimer = null;
+		var autocompleteXhr = null;
+		var autocompleteDebounce = null;
+
+		function showAutocomplete(suggestions) {
+			var $ac = $('#codigoAutocomplete');
+			if (!suggestions || suggestions.length === 0) {
+				$ac.empty().attr('hidden', true);
+				return;
+			}
+			$ac.empty();
+			suggestions.forEach(function (c) {
+				$ac.append('<div class="catalogo-autocomplete-item" role="option" data-codigo="' + (c + '').replace(/"/g, '&quot;') + '">' + c + '</div>');
+			});
+			$ac.removeAttr('hidden');
+		}
+
+		function hideAutocomplete() {
+			$('#codigoAutocomplete').empty().attr('hidden', true);
+		}
+
+		function fetchCodigoSuggestions(text, callback) {
+			if (autocompleteXhr) autocompleteXhr.abort();
+			if (!text || text.length < 2) {
+				hideAutocomplete();
+				if (callback) callback([]);
+				return;
+			}
+			autocompleteXhr = $.get('php/catalogo.php', { mode: 'codigo', codigo: text }, function (data) {
+				var list = Array.isArray(data) ? data.slice(0, MAX_SUGGESTIONS).map(function (r) { return r.codigo || ''; }) : [];
+				showAutocomplete(list);
+				if (callback) callback(list);
+			}).fail(function () {
+				hideAutocomplete();
+				if (callback) callback([]);
+			});
+			autocompleteXhr = null;
+		}
+
+		var CODIGO_MAX_LENGTH = 20;
+		function enforceCodigoLength() {
+			var $input = $('#codigo');
+			var val = $input.val();
+			if (val.length > CODIGO_MAX_LENGTH) {
+				$input.val(val.slice(0, CODIGO_MAX_LENGTH));
+			}
+		}
+		$('#codigo').attr('maxlength', CODIGO_MAX_LENGTH);
+		$('#codigo').on('input', function () {
+			enforceCodigoLength();
+			var val = $(this).val();
+			clearTimeout(autocompleteDebounce);
+			if (val.length < 2) {
+				hideAutocomplete();
+				return;
+			}
+			autocompleteDebounce = setTimeout(function () { fetchCodigoSuggestions(val); }, 300);
+		});
+		$('#codigo').on('paste', function () {
+			var $input = $(this);
+			setTimeout(function () {
+				enforceCodigoLength();
+				var val = $input.val();
+				if (val.length >= 2) fetchCodigoSuggestions(val);
+				else hideAutocomplete();
+			}, 0);
+		});
+
+		$('#codigo').on('focus', function () {
+			var val = $(this).val();
+			if (val.length >= 2) fetchCodigoSuggestions(val);
+		});
+
+		$('#codigo').on('blur', function () {
+			autocompleteHideTimer = setTimeout(hideAutocomplete, 200);
+		});
+
+		$('#codigoAutocomplete').on('mousedown', '.catalogo-autocomplete-item', function (e) {
+			e.preventDefault();
+			var c = $(this).data('codigo');
+			$('#codigo').val(c);
+			hideAutocomplete();
+		});
+
+		// Límite de dígitos en dimensiones (máx. 4 cifras)
+		$('#dInterior, #dExterior, #espesor').on('input', function () {
+			var $el = $(this);
+			var v = $el.val();
+			if (v !== '' && v.length > 4) $el.val(v.slice(0, 4));
+			var n = parseInt($el.val(), 10);
+			if (!isNaN(n) && n > 9999) $el.val(9999);
+		});
+	</script>
+</body>
+
+</html>

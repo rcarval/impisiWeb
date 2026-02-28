@@ -34,14 +34,14 @@
                         <!-- Nav -->
                         <script>
                                 $(function () {
-                                    $("#header").load("../components/navigation.html");
+                                    $("#header").load("../components/navigation.html", function () { $(document).trigger('nav-ready'); });
                                 });
                             </script>
                 </div>
 
                 <!-- Banner -->
                 <section id="banner2">
-                        <img loading="lazy" class="d-block w-100 h-auto" src="../images/importaciones.jpeg" alt="First slide" alt="Rodamientos">
+                        <img loading="lazy" class="d-block w-100 h-auto" src="../images/importaciones.jpeg" alt="Importaciones">
                         <header>
                                 <h2>IMPORTACIONES<em> "sin complicaciones. Descubre la excelencia en cada entrega"</em></h2>
                         </header>
@@ -87,8 +87,9 @@
 	<script src="../assets/js/jquery.dropotron.min.js"></script>
 	<script src="../assets/js/browser.min.js"></script>
 	<script src="../assets/js/breakpoints.min.js"></script>
-	<script src="../assets/js/util.js"></script>
-	<script src="../assets/js/main.js"></script>
+<script src="../assets/js/util.js"></script>
+        <script src="../assets/js/navigation.js"></script>
+        <script src="../assets/js/main.js"></script>
 
 </body>
 

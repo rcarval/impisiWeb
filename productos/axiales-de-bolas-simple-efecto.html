@@ -33,7 +33,7 @@
                         <div id="header">
                                 <script>
                                     $(function () {
-                                        $("#header").load("../components/navigation.html");
+                                        $("#header").load("../components/navigation.html", function () { $(document).trigger('nav-ready'); });
                                     });
                                 </script>
                                                     </div>
@@ -112,6 +112,7 @@
                 <script src="../assets/js/browser.min.js"></script>
                 <script src="../assets/js/breakpoints.min.js"></script>
                 <script src="../assets/js/util.js"></script>
+                <script src="../assets/js/navigation.js"></script>
                 <script src="../assets/js/main.js"></script>
 
         </body>
